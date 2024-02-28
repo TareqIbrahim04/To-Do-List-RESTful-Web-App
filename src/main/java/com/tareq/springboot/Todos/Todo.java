@@ -1,24 +1,47 @@
 package com.tareq.springboot.Todos;
 
+import com.mongodb.lang.NonNull;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+@Document
 public class Todo {
-    private int id;
+    @Id
+    private String id;
+    @NotNull(message = "Title is required!")
+    @Size(min = 5, message = "Title should be at least 5 characters long")
     private String title;
     private String description;
-
+    private long timeStamp;
     public Todo() {
     }
 
-    public Todo(int id, String title, String description) {
+    public Todo(long timeStamp) {
+        this.timeStamp = timeStamp;
+    }
+
+    public Todo(String id, String title, String description) {
         this.id = id;
         this.title = title;
         this.description = description;
     }
 
-    public int getId() {
+    public long getTimeStamp() {
+        return timeStamp;
+    }
+
+    public void setTimeStamp(long timeStamp) {
+        this.timeStamp = timeStamp;
+    }
+
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

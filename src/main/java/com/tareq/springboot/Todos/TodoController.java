@@ -1,8 +1,11 @@
 package com.tareq.springboot.Todos;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.*;
 
 @RequestMapping(value = "/projects/todos")
@@ -13,22 +16,23 @@ public class TodoController {
     private TodoService todoService;
 
     @GetMapping(value =  "/{idx}")
-    public Todo specialTodoList(@PathVariable int idx){
-        return todoService.getData().get(idx-1);
+    public ResponseEntity<Todo> specialTodoList(@PathVariable String idx){
+        Todo result = todoService.getById(idx);
+        return new ResponseEntity<>(result, HttpStatus.OK);
     }
     @GetMapping(value = {"","/"})
-    public List<Todo> AllTodoList(){
-        return todoService.getData();
+    public ResponseEntity<List<Todo>> AllTodoList(){
+        List<Todo> result = todoService.findAll();
+        return new ResponseEntity<>(result , HttpStatus.OK);
     }
     @PostMapping(value = {"","/"})
-    public Todo creatNewTodo(@RequestBody Todo todo){
-        if(todoService.save(todo)){
-            return todo;
-        }
-        return null;
+    public ResponseEntity<Todo> creatNewTodo(@Valid @RequestBody Todo todo){
+        Todo result = todoService.save(todo);
+        return new ResponseEntity<>(result, HttpStatus.CREATED);
     }
     @DeleteMapping(value = "/{id}")
-    public void deleteTodo(@PathVariable int id){
+    public ResponseEntity<Void> deleteTodo(@PathVariable String id){
         todoService.unSave(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }
