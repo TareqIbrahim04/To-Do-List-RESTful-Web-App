@@ -10,11 +10,12 @@ import javax.validation.constraints.Size;
 @Document
 public class Todo {
     @Id
-    private String id;
+        private String id;
     @NotNull(message = "Title is required!")
     @Size(min = 5, message = "Title should be at least 5 characters long")
-    private String title;
-    private String description;
+        private String title;
+    @NotNull(message = "Description is required!")
+        private String description;
     private long timeStamp;
     public Todo() {
     }
