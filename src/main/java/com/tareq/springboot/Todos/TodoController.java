@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.*;
 
-@RequestMapping(value = "/projects/todos")
+@RequestMapping(value = "/api/v1/todos")
 @RestController
 public class TodoController {
 
