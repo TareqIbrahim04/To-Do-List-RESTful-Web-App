@@ -1,5 +1,6 @@
 package com.tareq.springboot.security;
 
+import com.tareq.springboot.errors.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.authority.AuthorityUtils;
@@ -14,7 +15,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class UserService implements UserDetailsService {
+public class UserService implements UserDetailsService /* Because it is responsible about User Services */ {
     @Autowired
     private UserRepo userRepo;
 
@@ -23,8 +24,12 @@ public class UserService implements UserDetailsService {
         return new BCryptPasswordEncoder();
     }
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return new User("Tareq",passwordEncoder().encode("password"), AuthorityUtils.NO_AUTHORITIES);
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        AppUser user = userRepo.findByEmail(email);
+        if(user == null) {
+            throw new NotFoundException("No User exist with the passed email in database ^_^");
+        }
+        return user;
     }
 
     public void save(AppUser user){

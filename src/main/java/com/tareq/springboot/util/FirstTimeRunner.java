@@ -21,7 +21,7 @@ public class FirstTimeRunner implements CommandLineRunner { // @Component class 
         // if no users exist, create some users
         if(userService.findAll().isEmpty()){
             logger.info("No Users found. creating some users");
-            AppUser user = new AppUser("tareq@gmail.com","password","Tareq");
+            AppUser user = new AppUser("tareq@gmail.com","12345","Tareq");
             userService.save(user);
         }
 

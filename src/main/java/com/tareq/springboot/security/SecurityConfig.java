@@ -1,5 +1,7 @@
 package com.tareq.springboot.security;
 
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -13,6 +15,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private final String[] Public_EndPoints = {
             "/api/v1/auth/**"
     };
+    @Bean // should exist to use an Autowired Authentication in AuthController class
+    @Override
+    protected AuthenticationManager authenticationManager() throws Exception {
+        return super.authenticationManager();
+    }
 
     @Override
     public void configure(HttpSecurity http) throws Exception {

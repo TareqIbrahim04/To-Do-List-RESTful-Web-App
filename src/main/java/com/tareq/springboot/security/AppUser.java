@@ -11,20 +11,20 @@ import java.util.Collection;
 import java.util.Date;
 
 @Document(collection = "users")
-public class AppUser implements UserDetails {
+public class AppUser implements UserDetails /* Because it is responsible about users */ {
 
     @Id
-        private String id;
+    private String id;
 
     @NotEmpty
-        private String name;
+    private String name;
 
     @NotEmpty
-        private String email;
+    private String email;
 
     @NotEmpty
     @JsonIgnore // ignore it when get request made for a user
-        private String password;
+    private String password;
 
     private Date created;
 
