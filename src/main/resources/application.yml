@@ -9,5 +9,5 @@ spring:
 
 auth:
   expiration: 604800
-  secret: osjdhgajsbgoajsdrhbgojardsbhojarhbaorhbaksjdfhgsjdfhgsjdhsjkfhsjdkfgljshdgfksjdfghkljsdhfgvlsjdhfgvlsdhgjsdlhj
+  secret: todoAPISecret1234
   header: Authorization

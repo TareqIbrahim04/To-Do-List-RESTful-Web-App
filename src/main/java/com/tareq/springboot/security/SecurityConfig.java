@@ -3,11 +3,10 @@ package com.tareq.springboot.security;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -20,7 +19,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected AuthenticationManager authenticationManager() throws Exception {
         return super.authenticationManager();
     }
-
+    @Bean
+    AuthFilter authFilter(){
+        return new AuthFilter();
+    }
     @Override
     public void configure(HttpSecurity http) throws Exception {
 
@@ -33,6 +35,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .antMatchers(Public_EndPoints).permitAll() // permission for all users to access this URL
                     .anyRequest().authenticated() // for any other request ... there is no public permission (just for authenticated users)
                 .and()
-                .httpBasic(); // this method make the authentication based on just username (we want it temporary)
+                .addFilterBefore(authFilter(), UsernamePasswordAuthenticationFilter.class); // add filter before any request (after signed in)
     }
 }
