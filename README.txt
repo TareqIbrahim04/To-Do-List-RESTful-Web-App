@@ -22,7 +22,7 @@ How To Use:
 Note: u can make your own user with unique user name, password and name, by using a post request
 “https://localhost:8081/api/v1/auth/login”
 
-	After logging in, u can create a to-do with its title & description, by using a post request
+After logging in, u can create a to-do with its title & description, by using a post request
 “https://localhost:8081/api/v1/todos” (don’t forget to pass the token as a Bearer Authentication with the request)
 
 You can access your to-do’s by using a get request 
