@@ -1,4 +1,3 @@
-# header H1
 A To-Do List Project
 
 Used:
