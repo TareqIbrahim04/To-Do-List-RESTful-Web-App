@@ -1,5 +1,6 @@
 package com.tareq.springboot.Todos;
 
+import com.tareq.springboot.BaseController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,7 +11,7 @@ import java.util.*;
 
 @RequestMapping(value = "/api/v1/todos")
 @RestController
-public class TodoController {
+public class TodoController extends BaseController {
 
     @Autowired
     private TodoService todoService;
@@ -22,11 +23,12 @@ public class TodoController {
     }
     @GetMapping(value = {"","/"})
     public ResponseEntity<List<Todo>> AllTodoList(){
-        List<Todo> result = todoService.findAll();
+        List<Todo> result = todoService.findByUserId(getCurrentUser().getId());
         return new ResponseEntity<>(result , HttpStatus.OK);
     }
     @PostMapping(value = {"","/"})
     public ResponseEntity<Todo> creatNewTodo(@Valid @RequestBody Todo todo){
+        todo.setUserId(getCurrentUser().getId());
         Todo result = todoService.save(todo);
         return new ResponseEntity<>(result, HttpStatus.CREATED);
     }

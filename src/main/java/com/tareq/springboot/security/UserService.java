@@ -40,4 +40,8 @@ public class UserService implements UserDetailsService /* Because it is responsi
     public List<AppUser> findAll(){
         return userRepo.findAll();
     }
+
+    public AppUser findUserByUsername(String username){
+        return userRepo.findAppUserByEmail(username);
+    }
 }

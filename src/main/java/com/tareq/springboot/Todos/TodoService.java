@@ -1,38 +1,52 @@
 package com.tareq.springboot.Todos;
 
+import com.tareq.springboot.BaseController;
 import com.tareq.springboot.errors.ConflictException;
 import com.tareq.springboot.errors.NotFoundException;
+import com.tareq.springboot.security.AppUser;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @Service
-public class TodoService {
+public class TodoService{
 
     @Autowired
     private TodoRepo todorepo;
-
+    @Autowired
+    private BaseController baseController;
     public List<Todo> findAll() {
         return todorepo.findAll();
+    }
+    public List<Todo> findByUserId(String userId){
+        return todorepo.findByUserId(userId);
     }
 
     public Todo getById(String id){
         try{
-            return (Todo) todorepo.findById(id).get();
+            return (Todo) todorepo.findByIdAndUserId(id,baseController.getCurrentUser().getId());
         }catch (NoSuchElementException ex){
             throw new NotFoundException(String.format("No Record with the id [%s] found in database!", id));
         }
     }
     public Todo save(Todo todo){
-        if(todorepo.findByTitle(todo.getTitle())!=null){
+        Todo databaseTodo = todorepo.findByTitle(todo.getTitle());
+        if(databaseTodo != null && databaseTodo.getUserId().equals(baseController.getCurrentUser().getId())){
             throw new ConflictException(String.format("There exist an object with the same title [%s] in database", todo.getTitle()));
         }
         return (Todo) todorepo.insert(todo);
     }
     public void unSave(String id){
-        todorepo.deleteById(id);
+        Todo todo =  todorepo.findByIdAndUserId(id, baseController.getCurrentUser().getId());
+        if(todo == null){
+            throw new NotFoundException(String.format("No Record with the id [%s] found in database!", id));
+        }
+        todorepo.deleteByIdAndUserId(id, baseController.getCurrentUser().getId());
     }
 
 }

@@ -4,6 +4,7 @@ import com.mongodb.lang.NonNull;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -16,7 +17,10 @@ public class Todo {
         private String title;
     @NotNull(message = "Description is required!")
         private String description;
+
     private long timeStamp;
+
+    private String userId;
     public Todo() {
     }
 
@@ -60,5 +64,13 @@ public class Todo {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 }
