@@ -10,7 +10,7 @@
 - Uses JWT Authentication and Authorization for security 
 
 
-## How To Use: 
+## How To Use
 - Clone Project on your Computer
 - Run IntelliJ & MongoDB & PostMan
 	
