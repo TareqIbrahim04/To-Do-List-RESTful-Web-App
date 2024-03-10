@@ -1,3 +1,4 @@
+# header H1
 A To-Do List Project
 
 Used:
@@ -16,20 +17,20 @@ How To Use:
 	Run IntelliJ & MongoDB & PostMan
 	
 	First, The App make an initial User with 
-	Username: ìtareq@gmail.comî
-	Password: ì12345î
+	Username: ‚Äútareq@gmail.com‚Äù
+	Password: ‚Äú12345‚Äù
 	
 Note: u can make your own user with unique user name, password and name, by using a post request
-ìhttps://localhost:8081/api/v1/auth/loginî
+‚Äúhttps://localhost:8081/api/v1/auth/login‚Äù
 
 	After logging in, u can create a to-do with its title & description, by using a post request
-ìhttps://localhost:8081/api/v1/todosî (donít forget to pass the token as a Bearer Authentication with the request)
+‚Äúhttps://localhost:8081/api/v1/todos‚Äù (don‚Äôt forget to pass the token as a Bearer Authentication with the request)
 
-You can access your to-doís by using a get request 
-ìhttps://localhost:8081/api/v1/todosî (donít forget to pass the token as a Bearer Authentication with the request)
+You can access your to-do‚Äôs by using a get request 
+‚Äúhttps://localhost:8081/api/v1/todos‚Äù (don‚Äôt forget to pass the token as a Bearer Authentication with the request)
 
 You can delete a specific to-do by using a delete request 
-ìhttps://localhost:8081/api/v1/todos/<id>î
-(donít forget to pass the token as a Bearer Authentication with the request)
+‚Äúhttps://localhost:8081/api/v1/todos/<id>‚Äù
+(don‚Äôt forget to pass the token as a Bearer Authentication with the request)
 
 	
