@@ -33,4 +33,4 @@
 
 ## 📞 Contact_Us
 - ### If you have any questions or require further details, please feel free to contact me: 
-- ### Gmail: [tareq.ibra.04@gmail.com)
+- ### Gmail: tareq.ibra.04@gmail.com
