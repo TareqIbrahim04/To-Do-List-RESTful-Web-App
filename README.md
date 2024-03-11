@@ -27,6 +27,9 @@
 - You can access your to-do’s by using a get request 
 “https://localhost:8081/api/v1/todos” (don’t forget to pass the token as a Bearer Authentication with the request)
 
+- You can access a specific to-do by using a get request 
+“https://localhost:8081/api/v1/todos/<id>” (don’t forget to pass the token as a Bearer Authentication with the request)
+
 - You can delete a specific to-do by using a delete request 
 “https://localhost:8081/api/v1/todos/<id>”
 (don’t forget to pass the token as a Bearer Authentication with the request)
