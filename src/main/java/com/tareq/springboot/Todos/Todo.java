@@ -19,7 +19,7 @@ public class Todo {
         private String description;
 
     private long timeStamp;
-
+    private String status = "notDone";
     private String userId;
     public Todo() {
     }
@@ -72,5 +72,13 @@ public class Todo {
 
     public void setUserId(String userId) {
         this.userId = userId;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

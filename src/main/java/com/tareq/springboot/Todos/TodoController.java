@@ -37,4 +37,9 @@ public class TodoController extends BaseController {
         todoService.unSave(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<Todo> updateTodo(@PathVariable String id,@RequestBody Todo todo){
+        Todo result = todoService.update(id, todo);
+        return new ResponseEntity<>(result ,HttpStatus.OK);
+    }
 }
