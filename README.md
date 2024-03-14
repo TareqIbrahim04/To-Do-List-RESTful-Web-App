@@ -2,6 +2,7 @@
 
 ## 💻 Technologies_Used
 - **SpringBoot** (java version <17>)
+- **IntelliJ IDEA**
 - **MongoDB**
 - **PostMan**
 
