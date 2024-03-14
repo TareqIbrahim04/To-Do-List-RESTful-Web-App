@@ -51,7 +51,9 @@ public class TodoService{
 
     public Todo update(String id, Todo todo) {
         Todo todo1 = todorepo.findByIdAndUserId(id, baseController.getCurrentUser().getId());
-        todo1.setStatus(todo.getStatus());
+        if(todo.getTitle() != null) todo1.setTitle(todo.getTitle());
+        if(todo.getDescription() != null) todo1.setTitle(todo.getDescription());
+        if(!todo.getStatus().equals("unDone")) todo1.setStatus(todo.getStatus());
         todorepo.deleteByIdAndUserId(id, baseController.getCurrentUser().getId());
         save(todo1);
         return todo1;
