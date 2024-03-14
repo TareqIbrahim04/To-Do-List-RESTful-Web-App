@@ -22,13 +22,16 @@
 “https://localhost:8081/api/v1/auth/signup” and then login with a post request "https://localhost:8081/api/v1/auth/login" (copy the token)
 
 - After logging in, u can create a to-do with its title & description, by using a post request
-“https://localhost:8081/api/v1/todos” (don’t forget to pass the token as a Bearer Authentication with the request)
+“https://localhost:8081/api/v1/todos” and pass the to-do attributes (title, description) as a JSON body in postman (don’t forget to pass the token as a Bearer Authentication with the request)
 
 - You can access your to-do’s by using a get request 
 “https://localhost:8081/api/v1/todos” (don’t forget to pass the token as a Bearer Authentication with the request)
 
 - You can access a specific to-do by using a get request 
 “https://localhost:8081/api/v1/todos/id” (don’t forget to pass the token as a Bearer Authentication with the request)
+
+- You can update a specific to-do by using a put request 
+“https://localhost:8081/api/v1/todos/id” and pass the attributes u want to change as a JSON body in postman (don’t forget to pass the token as a Bearer Authentication with the request)
 
 - You can delete a specific to-do by using a delete request 
 “https://localhost:8081/api/v1/todos/id”
