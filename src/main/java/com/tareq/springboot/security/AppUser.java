@@ -16,10 +16,10 @@ public class AppUser implements UserDetails /* Because it is responsible about u
     @Id
     private String id;
 
-    @NotEmpty
+    @NotEmpty(message = "name is required!")
     private String name;
 
-    @NotEmpty
+    @NotEmpty(message = "email is required!")
     private String email;
 
     @NotEmpty

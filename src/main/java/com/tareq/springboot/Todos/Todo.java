@@ -1,6 +1,8 @@
 package com.tareq.springboot.Todos;
 
 import com.mongodb.lang.NonNull;
+import lombok.Builder;
+import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 

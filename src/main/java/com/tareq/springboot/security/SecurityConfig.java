@@ -26,7 +26,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(HttpSecurity http) throws Exception {
 
-        http
+            http
                 .cors().and().csrf().disable() // No Cookies
                 .sessionManagement()
                     .sessionCreationPolicy(SessionCreationPolicy.STATELESS) // we're using JWT Auth -> we don't want session (STATELESS)

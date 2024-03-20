@@ -4,6 +4,7 @@ import com.tareq.springboot.BaseController;
 import com.tareq.springboot.errors.ConflictException;
 import com.tareq.springboot.errors.NotFoundException;
 import com.tareq.springboot.security.AppUser;
+import org.apache.logging.log4j.message.StringFormattedMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -51,11 +52,13 @@ public class TodoService{
 
     public Todo update(String id, Todo todo) {
         Todo todo1 = todorepo.findByIdAndUserId(id, baseController.getCurrentUser().getId());
+        if(todo1 == null){
+            throw new NotFoundException(String.format("No To-do with this id [%s] found in database!", id));
+        }
         if(todo.getTitle() != null) todo1.setTitle(todo.getTitle());
         if(todo.getDescription() != null) todo1.setTitle(todo.getDescription());
         if(!todo.getStatus().equals("unDone")) todo1.setStatus(todo.getStatus());
-        todorepo.deleteByIdAndUserId(id, baseController.getCurrentUser().getId());
-        save(todo1);
+        todorepo.save(todo1);
         return todo1;
     }
 }
