@@ -1,5 +1,6 @@
 package com.tareq.springboot.security;
 
+import com.tareq.springboot.errors.ArgumentException;
 import com.tareq.springboot.errors.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -41,7 +42,10 @@ public class UserService implements UserDetailsService /* Because it is responsi
         return userRepo.findAll();
     }
 
-    public AppUser findUserByUsername(String username){
-        return userRepo.findAppUserByEmail(username);
+    public void findUserByUsername(String username){
+        AppUser user = userRepo.findAppUserByEmail(username);
+        if(user != null){
+            throw new ArgumentException("This User with this name is already exist!");
+        }
     }
 }
