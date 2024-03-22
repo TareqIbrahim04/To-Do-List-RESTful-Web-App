@@ -39,7 +39,7 @@ public class AuthController {
     @PostMapping(value = {"/signup","/signup/"})
     public String signUp(@RequestBody SignUpRequest signUpRequest){
         String username = signUpRequest.getUsername();
-        AppUser user = userService.findUserByUsername(signUpRequest.getUsername());
+        UserDetails user = userService.findUserByUsername(signUpRequest.getUsername());
         if(user != null){
             throw new ArgumentException("This User with this name is already exist!");
         }

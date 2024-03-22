@@ -1,5 +1,7 @@
-package com.tareq.springboot.Todos;
+package com.tareq.springboot.RepoTest;
 
+import com.tareq.springboot.Todos.Todo;
+import com.tareq.springboot.Todos.TodoRepo;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -10,6 +12,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.empty;

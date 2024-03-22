@@ -29,9 +29,10 @@ public class TodoService{
     }
 
     public Todo getById(String id){
-        try{
+        Todo todo = todorepo.findByIdAndUserId(id,baseController.getCurrentUser().getId());
+        if(todo!=null){
             return (Todo) todorepo.findByIdAndUserId(id,baseController.getCurrentUser().getId());
-        }catch (NoSuchElementException ex){
+        }else{
             throw new NotFoundException(String.format("No Record with the id [%s] found in database!", id));
         }
     }
@@ -56,7 +57,7 @@ public class TodoService{
             throw new NotFoundException(String.format("No To-do with this id [%s] found in database!", id));
         }
         if(todo.getTitle() != null) todo1.setTitle(todo.getTitle());
-        if(todo.getDescription() != null) todo1.setTitle(todo.getDescription());
+        if(todo.getDescription() != null) todo1.setDescription(todo.getDescription());
         if(!todo.getStatus().equals("unDone")) todo1.setStatus(todo.getStatus());
         todorepo.save(todo1);
         return todo1;
