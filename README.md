@@ -8,7 +8,8 @@
 
 ## ✨ Features
 - Based on concept of REST Api
-- Uses JWT Authentication and Authorization for security 
+- Uses JWT Authentication and Authorization for security
+- Tested with Unit Testing (Mockito & JUnit5)
 
 
 ## How To Use
